@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Galpão SENAI - Ambiente Virtual 3D</title>
+
+    <!-- A-FRAME -->
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+
+    <!-- ====================================== -->
+    <!-- INTERFACE -->
+    <!-- ====================================== -->
+
+    <div id="interface">
+
+        <h1>🏗️ GALPÃO SENAI 3D</h1>
+
+        <div class="controles">
+
+            <p>🎮 WASD — Movimentar</p>
+
+            <p>🖱️ Mouse — Olhar ao redor</p>
+
+            <p>⌨️ ESC — Liberar mouse</p>
+
+            <p>🥽 VR — Dispositivos compatíveis</p>
+
+        </div>
+
+        <div id="status">
+            Carregando ambiente...
+        </div>
+
+    </div>
+
+    <!-- ====================================== -->
+    <!-- CENA PRINCIPAL -->
+    <!-- ====================================== -->
+
+    <a-scene
+
+        id="cena"
+
+        background="color: #87CEEB"
+
+        renderer="
+            antialias: true;
+            colorManagement: true
+        "
+
+        vr-mode-ui="enabled: true"
+
+    >
+
+        <!-- ================================== -->
+        <!-- ILUMINAÇÃO AMBIENTE -->
+        <!-- ================================== -->
+
+        <a-entity
+
+            light="
+                type: ambient;
+                color: #FFFFFF;
+                intensity: 0.7
+            "
+
+        ></a-entity>
+
+        <!-- ================================== -->
+        <!-- ILUMINAÇÃO DIRECIONAL -->
+        <!-- ================================== -->
+
+        <a-entity
+
+            position="-8 15 6"
+
+            light="
+                type: directional;
+                color: #FFFFFF;
+                intensity: 0.9
+            "
+
+        ></a-entity>
+
+        <!-- ================================== -->
+        <!-- JOGADOR -->
+        <!-- ================================== -->
+
+        <a-entity
+
+            id="jogador"
+
+            position="0 0 5"
+
+        >
+
+            <a-camera
+
+                id="camera"
+
+                position="0 1.6 0"
+
+                look-controls="
+                    enabled: true;
+                    pointerLockEnabled: true
+                "
+
+                wasd-controls="
+                    enabled: true;
+                    acceleration: 25
+                "
+
+            >
+
+                <a-cursor
+
+                    color="#FFFFFF"
+
+                    opacity="0.7"
+
+                ></a-cursor>
+
+            </a-camera>
+
+        </a-entity>
+
+        <!-- ================================== -->
+        <!-- CENÁRIO -->
+        <!-- ================================== -->
+
+        <a-entity id="cenario"></a-entity>
+
+        <!-- ================================== -->
+        <!-- CÉU -->
+        <!-- ================================== -->
+
+        <a-sky color="#87CEEB"></a-sky>
+
+    </a-scene>
+
+    <!-- ====================================== -->
+    <!-- JAVASCRIPT -->
+    <!-- ====================================== -->
+
+    <script src="./js/ambiente.js?v=7"></script>
+
+</body>
+
+</html>
