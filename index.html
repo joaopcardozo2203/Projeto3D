@@ -2,163 +2,287 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Galpão SENAI - Ambiente Virtual 3D</title>
+    <title>Construção Civil 3D - V8</title>
 
     <!-- A-FRAME -->
-    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
-    <!-- ====================================== -->
-    <!-- INTERFACE -->
-    <!-- ====================================== -->
+    <!-- ======================================== -->
+    <!-- TELA DE INSTRUÇÕES -->
+    <!-- ======================================== -->
 
-    <div id="interface">
+    <div id="tela-inicial">
 
-        <h1>🏗️ GALPÃO SENAI 3D</h1>
+        <div class="painel-inicial">
 
-        <div class="controles">
+            <div class="icone-inicial">
+                🏗️
+            </div>
 
-            <p>🎮 WASD — Movimentar</p>
+            <h1>CONSTRUÇÃO CIVIL 3D</h1>
 
-            <p>🖱️ Mouse — Olhar ao redor</p>
+            <h2>GALPÃO INDUSTRIAL — V8</h2>
 
-            <p>⌨️ ESC — Liberar mouse</p>
+            <p>
+                Explore o galpão industrial em primeira pessoa.
+                Visite os depósitos, as construções internas
+                e a área externa.
+            </p>
 
-            <p>🥽 VR — Dispositivos compatíveis</p>
+            <div class="instrucoes">
 
-        </div>
+                <div class="instrucao">
+                    <span>W A S D</span>
+                    <p>Movimentar</p>
+                </div>
 
-        <div id="status">
-            Carregando ambiente...
+                <div class="instrucao">
+                    <span>MOUSE</span>
+                    <p>Olhar ao redor</p>
+                </div>
+
+                <div class="instrucao">
+                    <span>SHIFT</span>
+                    <p>Correr</p>
+                </div>
+
+                <div class="instrucao">
+                    <span>E</span>
+                    <p>Abrir portas</p>
+                </div>
+
+                <div class="instrucao">
+                    <span>ESC</span>
+                    <p>Liberar mouse</p>
+                </div>
+
+                <div class="instrucao">
+                    <span>VR</span>
+                    <p>Modo imersivo</p>
+                </div>
+
+            </div>
+
+            <button id="btn-iniciar">
+                ▶ INICIAR EXPLORAÇÃO
+            </button>
+
+            <p class="aviso">
+                Clique na tela para controlar a câmera.
+            </p>
+
         </div>
 
     </div>
 
-    <!-- ====================================== -->
-    <!-- CENA PRINCIPAL -->
-    <!-- ====================================== -->
+
+    <!-- ======================================== -->
+    <!-- HUD -->
+    <!-- ======================================== -->
+
+    <div id="hud">
+
+        <div class="hud-superior">
+
+            <div class="logo-hud">
+                🏗️ CONSTRUÇÃO CIVIL 3D
+            </div>
+
+            <div class="versao-hud">
+                V8
+            </div>
+
+        </div>
+
+        <div class="hud-inferior">
+
+            <div class="controle-hud">
+                WASD — MOVER
+            </div>
+
+            <div class="controle-hud">
+                SHIFT — CORRER
+            </div>
+
+            <div class="controle-hud">
+                E — PORTAS
+            </div>
+
+            <div class="controle-hud">
+                ESC — MOUSE
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ======================================== -->
+    <!-- MIRA CENTRAL -->
+    <!-- ======================================== -->
+
+    <div id="mira">
+        +
+    </div>
+
+
+    <!-- ======================================== -->
+    <!-- CENA 3D -->
+    <!-- ======================================== -->
 
     <a-scene
-
         id="cena"
-
-        background="color: #87CEEB"
-
-        renderer="
-            antialias: true;
-            colorManagement: true
-        "
-
+        embedded
+        renderer="antialias: true; colorManagement: true"
         vr-mode-ui="enabled: true"
-
+        loading-screen="enabled: true"
+        background="color: #87CEEB"
     >
 
-        <!-- ================================== -->
-        <!-- ILUMINAÇÃO AMBIENTE -->
-        <!-- ================================== -->
+        <!-- ==================================== -->
+        <!-- CENÁRIO -->
+        <!-- ==================================== -->
 
-        <a-entity
+        <a-entity id="cenario"></a-entity>
 
-            light="
-                type: ambient;
-                color: #FFFFFF;
-                intensity: 0.7
-            "
 
-        ></a-entity>
-
-        <!-- ================================== -->
-        <!-- ILUMINAÇÃO DIRECIONAL -->
-        <!-- ================================== -->
-
-        <a-entity
-
-            position="-8 15 6"
-
-            light="
-                type: directional;
-                color: #FFFFFF;
-                intensity: 0.9
-            "
-
-        ></a-entity>
-
-        <!-- ================================== -->
+        <!-- ==================================== -->
         <!-- JOGADOR -->
-        <!-- ================================== -->
+        <!-- ==================================== -->
 
         <a-entity
-
             id="jogador"
-
-            position="0 0 5"
-
+            position="0 0 -11"
         >
 
+            <!-- CÂMERA -->
+
             <a-camera
-
                 id="camera"
-
                 position="0 1.6 0"
-
-                look-controls="
-                    enabled: true;
-                    pointerLockEnabled: true
-                "
-
-                wasd-controls="
-                    enabled: true;
-                    acceleration: 25
-                "
-
+                look-controls="enabled: true; pointerLockEnabled: true"
+                wasd-controls="enabled: false"
             >
 
-                <a-cursor
+                <!-- CONTROLE VR ESQUERDO -->
 
-                    color="#FFFFFF"
+                <a-entity
+                    id="controle-esquerdo"
+                    laser-controls="hand: left"
+                    raycaster="objects: .interativo"
+                ></a-entity>
 
-                    opacity="0.7"
 
-                ></a-cursor>
+                <!-- CONTROLE VR DIREITO -->
+
+                <a-entity
+                    id="controle-direito"
+                    laser-controls="hand: right"
+                    raycaster="objects: .interativo"
+                ></a-entity>
 
             </a-camera>
 
         </a-entity>
 
-        <!-- ================================== -->
-        <!-- CENÁRIO -->
-        <!-- ================================== -->
-
-        <a-entity id="cenario"></a-entity>
-
-        <!-- ================================== -->
-        <!-- CÉU -->
-        <!-- ================================== -->
-
-        <a-sky color="#87CEEB"></a-sky>
-
     </a-scene>
 
-    <!-- ====================================== -->
-    <!-- JAVASCRIPT -->
-    <!-- ====================================== -->
 
-    <script src="./js/ambiente.js?v=7"></script>
+    <!-- ======================================== -->
+    <!-- SCRIPT PRINCIPAL -->
+    <!-- ======================================== -->
+
+    <script src="js/ambiente.js"></script>
+
+
+    <!-- ======================================== -->
+    <!-- INTERFACE -->
+    <!-- ======================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+
+                const telaInicial =
+                    document.getElementById("tela-inicial");
+
+                const botaoIniciar =
+                    document.getElementById("btn-iniciar");
+
+                const hud =
+                    document.getElementById("hud");
+
+                const mira =
+                    document.getElementById("mira");
+
+                const cena =
+                    document.querySelector("a-scene");
+
+
+                botaoIniciar.addEventListener(
+                    "click",
+                    () => {
+
+                        telaInicial.classList.add("oculta");
+
+                        hud.classList.add("visivel");
+
+                        mira.classList.add("visivel");
+
+                        // Solicita o controle do mouse
+                        // após a tela inicial desaparecer.
+
+                        const canvas = cena.canvas;
+
+                        if (
+                            canvas &&
+                            canvas.requestPointerLock
+                        ) {
+
+                            canvas.requestPointerLock();
+
+                        }
+
+                    }
+                );
+
+
+                // ESC libera o mouse.
+                // A tela inicial não reaparece automaticamente.
+
+                document.addEventListener(
+                    "keydown",
+                    evento => {
+
+                        if (evento.key === "Escape") {
+
+                            if (document.exitPointerLock) {
+                                document.exitPointerLock();
+                            }
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+    </script>
 
 </body>
-
 </html>

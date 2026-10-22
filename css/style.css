@@ -1,6 +1,12 @@
-/* ========================================= */
-/* CONFIGURAÇÕES GERAIS */
-/* ========================================= */
+/* =====================================================
+   CONSTRUÇÃO CIVIL 3D - V8
+   CSS COMPLETO
+===================================================== */
+
+
+/* =====================================================
+   CONFIGURAÇÕES GERAIS
+===================================================== */
 
 * {
     margin: 0;
@@ -13,132 +19,498 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-
     font-family: Arial, Helvetica, sans-serif;
-
-    background-color: #87CEEB;
+    background: #101820;
 }
 
-/* ========================================= */
-/* INTERFACE */
-/* ========================================= */
 
-#interface {
+/* =====================================================
+   CENA A-FRAME
+===================================================== */
+
+a-scene {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    z-index: 1;
+}
+
+
+/* =====================================================
+   TELA INICIAL
+===================================================== */
+
+#tela-inicial {
     position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
 
-    top: 20px;
-    left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    z-index: 1000;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(10, 20, 30, 0.96),
+            rgba(20, 40, 55, 0.96)
+        );
 
-    width: 280px;
+    transition:
+        opacity 0.4s ease,
+        visibility 0.4s ease;
+}
 
-    padding: 20px;
-
-    background: rgba(15, 20, 25, 0.88);
-
-    color: white;
-
-    border-radius: 12px;
-
-    box-shadow:
-        0 5px 25px rgba(0, 0, 0, 0.35);
-
+#tela-inicial.oculta {
+    opacity: 0;
+    visibility: hidden;
     pointer-events: none;
 }
 
-/* ========================================= */
-/* TÍTULO */
-/* ========================================= */
 
-#interface h1 {
-    font-size: 19px;
+/* =====================================================
+   PAINEL INICIAL
+===================================================== */
 
-    color: #FFD500;
+.painel-inicial {
+    width: 90%;
+    max-width: 650px;
+    padding: 35px;
 
+    text-align: center;
+
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.4);
+
+    backdrop-filter: blur(12px);
+}
+
+
+/* =====================================================
+   ÍCONE
+===================================================== */
+
+.icone-inicial {
+    font-size: 65px;
     margin-bottom: 15px;
-
-    letter-spacing: 0.5px;
 }
 
-/* ========================================= */
-/* CONTROLES */
-/* ========================================= */
 
-.controles {
-    padding: 10px;
+/* =====================================================
+   TÍTULOS
+===================================================== */
 
-    background: rgba(255, 255, 255, 0.05);
-
-    border-radius: 8px;
+.painel-inicial h1 {
+    color: #ffffff;
+    font-size: 31px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
 }
 
-.controles p {
-    font-size: 13px;
-
-    color: #E0E0E0;
-
-    margin-bottom: 9px;
+.painel-inicial h2 {
+    color: #ffcc00;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
 }
 
-.controles p:last-child {
+.painel-inicial > p {
+    color: #d2d9df;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+
+/* =====================================================
+   INSTRUÇÕES
+===================================================== */
+
+.instrucoes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.instrucao {
+    padding: 15px 10px;
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    transition: 0.2s;
+}
+
+.instrucao:hover {
+    background: rgba(255, 204, 0, 0.12);
+    border-color: rgba(255, 204, 0, 0.4);
+}
+
+.instrucao span {
+    display: block;
+
+    color: #ffcc00;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    margin-bottom: 7px;
+}
+
+.instrucao p {
+    color: #e0e0e0;
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   BOTÃO INICIAR
+===================================================== */
+
+#btn-iniciar {
+    width: 100%;
+    max-width: 350px;
+
+    padding: 17px 25px;
+
+    background: #ffcc00;
+
+    border: none;
+    border-radius: 10px;
+
+    color: #17212b;
+
+    font-size: 16px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+    box-shadow:
+        0 5px 20px rgba(255, 204, 0, 0.25);
+}
+
+#btn-iniciar:hover {
+    background: #ffdb4d;
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 25px rgba(255, 204, 0, 0.4);
+}
+
+#btn-iniciar:active {
+    transform: scale(0.98);
+}
+
+
+/* =====================================================
+   AVISO
+===================================================== */
+
+.painel-inicial .aviso {
+    color: #aeb9c2;
+    font-size: 12px;
+    margin-top: 18px;
     margin-bottom: 0;
 }
 
-/* ========================================= */
-/* STATUS */
-/* ========================================= */
 
-#status {
-    margin-top: 15px;
+/* =====================================================
+   HUD
+===================================================== */
 
-    padding: 12px;
+#hud {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
 
-    background: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
 
-    border-left: 4px solid #FFD500;
-
-    border-radius: 5px;
-
-    font-size: 12px;
-
-    color: #8AFF8A;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-/* ========================================= */
-/* CENA 3D */
-/* ========================================= */
-
-a-scene {
-    width: 100%;
-    height: 100%;
+#hud.visivel {
+    opacity: 1;
 }
 
-/* ========================================= */
-/* RESPONSIVIDADE */
-/* ========================================= */
 
-@media (max-width: 600px) {
+/* =====================================================
+   HUD SUPERIOR
+===================================================== */
 
-    #interface {
-        top: 10px;
-        left: 10px;
+.hud-superior {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
 
-        width: 220px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        padding: 12px;
+.logo-hud {
+    padding: 12px 18px;
+
+    background: rgba(10, 20, 30, 0.7);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 8px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.versao-hud {
+    padding: 10px 15px;
+
+    background: #ffcc00;
+
+    border-radius: 8px;
+
+    color: #17212b;
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+
+/* =====================================================
+   HUD INFERIOR
+===================================================== */
+
+.hud-inferior {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    width: max-content;
+    max-width: 95%;
+}
+
+.controle-hud {
+    padding: 10px 14px;
+
+    background: rgba(10, 20, 30, 0.75);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 7px;
+
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   MIRA CENTRAL
+===================================================== */
+
+#mira {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 200;
+
+    color: #ffffff;
+
+    font-size: 25px;
+    font-weight: 400;
+
+    text-shadow:
+        0 0 4px rgba(0, 0, 0, 0.9);
+
+    pointer-events: none;
+
+    opacity: 0;
+}
+
+#mira.visivel {
+    opacity: 1;
+}
+
+
+/* =====================================================
+   RESPONSIVIDADE - TABLET
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .painel-inicial {
+        padding: 25px;
+        max-width: 500px;
     }
 
-    #interface h1 {
-        font-size: 15px;
+    .painel-inicial h1 {
+        font-size: 24px;
     }
 
-    .controles p {
+    .painel-inicial h2 {
+        font-size: 14px;
+    }
+
+    .instrucoes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hud-superior {
+        top: 12px;
+        left: 12px;
+        right: 12px;
+    }
+
+    .logo-hud {
         font-size: 11px;
+        padding: 10px;
     }
 
-    #status {
-        font-size: 11px;
+    .hud-inferior {
+        bottom: 12px;
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+
+    .controle-hud {
+        font-size: 10px;
+        padding: 7px;
     }
 
 }
+
+
+/* =====================================================
+   RESPONSIVIDADE - CELULAR
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .painel-inicial {
+        width: 94%;
+        padding: 20px;
+    }
+
+    .icone-inicial {
+        font-size: 45px;
+    }
+
+    .painel-inicial h1 {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+
+    .painel-inicial h2 {
+        font-size: 12px;
+    }
+
+    .painel-inicial > p {
+        font-size: 12px;
+    }
+
+    .instrucoes {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .instrucao {
+        padding: 10px;
+    }
+
+    .instrucao span {
+        font-size: 12px;
+    }
+
+    .instrucao p {
+        font-size: 10px;
+    }
+
+    #btn-iniciar {
+        padding: 14px;
+        font-size: 13px;
+    }
+
+    .hud-inferior {
+        display: none;
+    }
+
+    .logo-hud {
+        font-size: 10px;
+    }
+
+    #mira {
+        font-size: 20px;
+    }
+
+}
+
+
+/* =====================================================
+   JOYSTICK MOBILE
+===================================================== */
+
+#joystick-base {
+    user-select: none;
+    -webkit-user-select: none;
+
+    -webkit-tap-highlight-color: transparent;
+
+    touch-action: none;
+}
+
+
+/* =====================================================
+   BOTÃO VR
+===================================================== */
+
+.a-enter-vr-button {
+    position: fixed !important;
+
+    bottom: 25px !important;
+    right: 25px !important;
+
+    z-index: 500 !important;
+}
+
+
+/* =====================================================
+   FIM DO CSS - V8
+===================================================== */
